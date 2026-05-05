@@ -1,4 +1,16 @@
-# 📊 Facebook Ad Bidding — A/B Test Analysis
+# Facebook Ad Bidding  A/B Test Analysis
+
+
+
+🗂️ **Case Study Problem**
+
+**Background**
+
+**Facebook, one of the world's largest digital advertising platforms, continuously experiments with new features to improve outcomes for both advertisers and the platform. In this case, Facebook's product team introduced a new bidding mechanism called Average Bidding as an alternative to the long-standing Maximum Bidding system.**
+
+**Under Maximum Bidding, advertisers define a hard ceiling — the most they are ever willing to pay per ad impression. Facebook's algorithm bids up to (but never beyond) that ceiling when deciding whether to show the ad**
+
+**Under Average Bidding, advertisers instead define a target average spend per impression. Facebook's algorithm dynamically bids higher or lower on individual auctions, but aims to keep the average spend near the stated target over time. This flexibility allows Facebook to target more valuable, high-intent users — even if it occasionally costs more per impression — while compensating by bidding less on lower-value impressions.**
 
 > **Can switching from Maximum Bidding to Average Bidding increase ad revenue by 31%?**
 > This project answers that question with rigorous statistical testing, funnel analysis, and actionable business insights.
@@ -305,22 +317,4 @@ plotly
 jupyter
 ```
 
----
 
-## 📚 References
-
-- Dataset: [Facebook A/B Test of Bidding Feature — Kaggle](https://www.kaggle.com/datasets/furth3r/facebook-ab-test-of-bidding-feature/data)
-- Kohavi, R., Tang, D., & Xu, Y. (2020). *Trustworthy Online Controlled Experiments.* Cambridge University Press.
-- SciPy Documentation: [scipy.stats.ttest_ind](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html)
-- SciPy Documentation: [scipy.stats.levene](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.levene.html)
-- Cohen, J. (1988). *Statistical Power Analysis for the Behavioral Sciences* (2nd ed.).
-
----
-
-<div align="center">
-
-**⭐ If you found this analysis useful, give the repo a star!**
-
-*Built with Python · Analyzed with SciPy · Visualized with Plotly*
-
-</div>
