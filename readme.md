@@ -17,7 +17,6 @@
 
 - [Business Context](#-business-context)
 - [The Experiment](#-the-experiment)
-- [Dataset](#-dataset)
 - [Project Structure](#-project-structure)
 - [Tech Stack](#-tech-stack)
 - [Methodology](#-methodology)
@@ -41,14 +40,13 @@ Digital advertising platforms like Facebook offer advertisers multiple bidding s
 | **Average Bidding** *(Test)* | Advertiser sets the **average** they're willing to pay. Facebook optimizes bids up and down around this average. |
 
 **The Business Question:**
-> *Does switching from Maximum Bidding to Average Bidding generate more revenue for advertisers — and is the difference statistically significant?*
+*Does switching from Maximum Bidding to Average Bidding generate more revenue for advertisers  and is the difference statistically significant?*
 
 This question directly impacts:
-- **Advertisers** — which strategy gives them better ROI on ad spend
-- **Facebook / Meta** — which bidding model drives more platform revenue
-- **Product & Growth teams** — whether to deprecate, promote, or A/B expose this feature further
+- **Advertisers** : which strategy gives them better ROI on ad spend
+- **Facebook / Meta** : which bidding model drives more platform revenue
+- **Product & Growth teams** : whether to deprecate, promote, or A/B expose this feature further
 
----
 
 ## 🧪 The Experiment
 
@@ -66,11 +64,9 @@ This question directly impacts:
 
 ---
 
-## 📂 Dataset
 
-**Source:** [Facebook A/B Test of Bidding Feature — Kaggle](https://www.kaggle.com/datasets/furth3r/facebook-ab-test-of-bidding-feature/data)
 
-The dataset contains two CSV files — one per group — each with **40 daily observations** and **4 features**:
+The dataset contains two CSV files - one per group-each with **40 daily observations** and **4 features**:
 
 | Column | Description |
 |---|---|
@@ -140,9 +136,9 @@ The analysis follows a structured, end-to-end data science workflow:
 
 ### Hypothesis
 
-> **H₀ (Null):** There is no significant difference in earnings between Maximum Bidding and Average Bidding.
->
-> **H₁ (Alternative):** Average Bidding generates significantly higher earnings than Maximum Bidding.
+**H₀ (Null):** There is no significant difference in earnings between Maximum Bidding and Average Bidding.
+
+**H₁ (Alternative):** Average Bidding generates significantly higher earnings than Maximum Bidding.
 
 ---
 
@@ -159,7 +155,7 @@ The analysis follows a structured, end-to-end data science workflow:
 
 ### 💡 Key Insight
 
-> Average Bidding reaches **18% more users** and generates **31.8% more revenue**, despite attracting **22% fewer clicks**. This means fewer but more relevant, high-intent users are clicking — leading to better conversions and higher-value purchases.
+Average Bidding reaches **18% more users** and generates **31.8% more revenue**, despite attracting **22% fewer clicks**. This means fewer but more relevant, high-intent users are clicking-leading to better conversions and higher-value purchases.
 
 ---
 
@@ -170,12 +166,12 @@ The funnel tracks user progression through the ad journey: **Impression → Clic
 | Funnel Stage | Control | Test | Interpretation |
 |---|---|---|---|
 | **Impression → Click (CTR)** | 5.01% | 3.29% | Test attracts broader but less click-happy audience |
-| **Click → Purchase (CVR)** | 10.80% | **14.67%** | 🟢 Test users who click are more likely to buy — better targeting |
-| **Purchase → Earning** | 346.45% | **432.08%** | 🟢 Test generates higher revenue per purchase — higher-value orders |
+| **Click → Purchase (CVR)** | 10.80% | **14.67%** | 🟢 Test users who click are more likely to buy -better targeting |
+| **Purchase → Earning** | 346.45% | **432.08%** | 🟢 Test generates higher revenue per  purchase-higher-value orders |
 
 ### What This Tells Us
 
-- **Lower CTR is not a red flag.** The test group trades volume for quality — fewer clicks, but far more conversions and revenue per click.
+- **Lower CTR is not a red flag.** The test group trades volume for quality-fewer clicks, but far more conversions and revenue per click.
 - **Average Bidding appears to attract higher purchase-intent users**, possibly because the flexible bidding algorithm optimizes for audiences more likely to convert rather than simply maximizing reach.
 - **Revenue per purchase is 24.7% higher** in the test group, suggesting Average Bidding may surface higher-value customers or product segments.
 
@@ -192,13 +188,13 @@ These efficiency metrics reveal how well each strategy monetizes user engagement
 | **Purchase per Click** | 0.1080 | **0.1467** | +35.8% |
 | **Earning per Purchase** | $3.46 | **$4.32** | +24.9% |
 
-> 📌 **Earning per Click is the standout metric** — the test strategy generates **70% more revenue per click**. This is the clearest indicator that Average Bidding delivers superior monetization efficiency.
+**Earning per Click is the standout metric** — the test strategy generates **70% more revenue per click**. This is the clearest indicator that Average Bidding delivers superior monetization efficiency.
 
 ---
 
 ## ✅ Statistical Validation
 
-### Step 1 — Levene's Test (Variance Equality)
+### Step 1 - Levene's Test (Variance Equality)
 
 Before running the t-test, variance homogeneity between groups was verified using **Levene's Test**.
 
@@ -217,13 +213,13 @@ Before running the t-test, variance homogeneity between groups was verified usin
 
 ### Interpretation
 
-> The p-value of **1.72 × 10⁻¹⁴** is astronomically smaller than α = 0.05.
-> The probability this result is due to chance is essentially **zero**.
-> Cohen's d of **−2.07** indicates a **large effect size** — this is not a marginal gain, it is a substantial, meaningful difference.
+**The p-value of **1.72 × 10⁻¹⁴** is astronomically smaller than α = 0.05.**
+**The probability this result is due to chance is essentially **zero**.
+**Cohen's d of **−2.07** indicates a **large effect size** — this is not a marginal gain, it is a substantial, meaningful difference.**
 
 ---
 
-## 📏 Confidence Interval
+## Confidence Interval
 
 A **Bootstrap Confidence Interval** (5,000 iterations) was computed to estimate the true range of the earnings uplift:
 
@@ -231,7 +227,7 @@ A **Bootstrap Confidence Interval** (5,000 iterations) was computed to estimate 
 95% Confidence Interval (Test − Control Earnings): [478.07, 728.28]
 ```
 
-> **Interpretation:** We are **95% confident** that switching to Average Bidding increases daily earnings by **between $478 and $728 per campaign**, compared to Maximum Bidding.
+**Interpretation:** We are **95% confident** that switching to Average Bidding increases daily earnings by **between $478 and $728 per campaign**, compared to Maximum Bidding.
 
 ### Sample Size Validation
 
@@ -242,7 +238,7 @@ Required sample size per group: 69
 Actual sample size per group:   40
 ```
 
-> ⚠️ The experiment ran with fewer observations than the theoretically recommended 69. However, given the **extremely low p-value (10⁻¹⁴)** and **large effect size (Cohen's d = 2.07)**, the test results are highly robust and the conclusion holds with confidence.
+⚠️ The experiment ran with fewer observations than the theoretically recommended 69. However, given the **extremely low p-value (10⁻¹⁴)** and **large effect size (Cohen's d = 2.07)**, the test results are highly robust and the conclusion holds with confidence.
 
 ---
 
