@@ -12,10 +12,6 @@
 
 **Under Average Bidding, advertisers instead define a target average spend per impression. Facebook's algorithm dynamically bids higher or lower on individual auctions, but aims to keep the average spend near the stated target over time. This flexibility allows Facebook to target more valuable, high-intent users — even if it occasionally costs more per impression — while compensating by bidding less on lower-value impressions.**
 
-> **Can switching from Maximum Bidding to Average Bidding increase ad revenue by 31%?**
-> This project answers that question with rigorous statistical testing, funnel analysis, and actionable business insights.
-
----
 
 ## 📌 Table of Contents
 
