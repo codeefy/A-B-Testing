@@ -160,7 +160,7 @@ Average Bidding reaches **18% more users** and generates **31.8% more revenue**,
 ---
 
 ## 🔻 Funnel Analysis
-![Funnel Analysis Chart](images/D:\Desktop\AB testing\Asset\funnel Comparison.png)
+![Funnel Analysis Chart](images/Asset/funnel%20Comparison.png)
 The funnel tracks user progression through the ad journey: **Impression → Click → Purchase → Earning**
 
 | Funnel Stage | Control | Test | Interpretation |
