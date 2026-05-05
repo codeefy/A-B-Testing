@@ -1,223 +1,326 @@
-# 📊 Facebook Ads A/B Testing: Revenue Optimization Case Study
+# 📊 Facebook Ad Bidding — A/B Test Analysis
+
+> **Can switching from Maximum Bidding to Average Bidding increase ad revenue by 31%?**
+> This project answers that question with rigorous statistical testing, funnel analysis, and actionable business insights.
 
 ---
 
-## 📱 Business Context
+## 📌 Table of Contents
 
-This project simulates a real-world **Facebook Ads (Meta Ads) A/B testing scenario**, where a company is testing a new campaign strategy to improve revenue.
-
-In digital marketing platforms like Facebook/Instagram, businesses continuously experiment with:
-
-- Ad creatives  
-- Audience targeting  
-- Landing pages  
-- Campaign strategies  
-
-### The Core Question:
-
-> “Does the new campaign strategy generate higher revenue per user compared to the current one?”
-
----
-
-## 🎯 Problem Statement
-
-The company wants to optimize its advertising performance.
-
-Two strategies are being compared:
-
-- **Control Group** → Existing campaign (baseline strategy)  
-- **Test Group** → New campaign (optimized strategy)
-
-The decision to roll out the new campaign depends on:
-
-- Revenue improvement  
-- Conversion efficiency  
-- Statistical reliability  
+- [Business Context](#-business-context)
+- [The Experiment](#-the-experiment)
+- [Dataset](#-dataset)
+- [Project Structure](#-project-structure)
+- [Tech Stack](#-tech-stack)
+- [Methodology](#-methodology)
+- [Key Results & Insights](#-key-results--insights)
+- [Funnel Analysis](#-funnel-analysis)
+- [Derived KPIs](#-derived-kpis)
+- [Statistical Validation](#-statistical-validation)
+- [Confidence Interval](#-confidence-interval)
+- [Business Recommendation](#-business-recommendation)
+- [How to Run](#-how-to-run)
 
 ---
 
-## 🧪 Experiment Design
+## 🏢 Business Context
 
-| Component | Description |
-|----------|------------|
-| Type | A/B Test |
-| Groups | Control vs Test |
-| Sample Size | 40 observations per group |
-| Total Data | 80 observations |
+Digital advertising platforms like Facebook offer advertisers multiple bidding strategies to control how their budget is spent. Two of the most common are:
 
-### Metrics Tracked:
-- Impressions → Reach  
-- Clicks → Engagement  
-- Purchases → Conversion  
-- Earnings → Revenue (Primary Metric)  
+| Strategy | Description |
+|---|---|
+| **Maximum Bidding** *(Control)* | Advertiser sets the **maximum** they're willing to pay per impression. Facebook never exceeds this ceiling. |
+| **Average Bidding** *(Test)* | Advertiser sets the **average** they're willing to pay. Facebook optimizes bids up and down around this average. |
 
----
+**The Business Question:**
+> *Does switching from Maximum Bidding to Average Bidding generate more revenue for advertisers — and is the difference statistically significant?*
 
-## 🎯 Objective
-
-1. Compare performance between control and test groups  
-2. Evaluate conversion funnel efficiency  
-3. Test statistical significance of earnings  
-4. Estimate revenue uplift  
-5. Make a business recommendation  
+This question directly impacts:
+- **Advertisers** — which strategy gives them better ROI on ad spend
+- **Facebook / Meta** — which bidding model drives more platform revenue
+- **Product & Growth teams** — whether to deprecate, promote, or A/B expose this feature further
 
 ---
 
-## 📊 Exploratory Analysis
+## 🧪 The Experiment
 
-### Control Group
-- Earnings ≈ **₹1908**
-
-### Test Group
-- Earnings ≈ **₹2515**
-
-👉 Initial observation:
-- Revenue increased significantly in test group
-
----
-
-## 🔍 Funnel Insight
-
-| Stage | Observation |
-|------|------------|
-| Impressions | Increased |
-| Clicks | Decreased |
-| Purchases | Increased |
-| Earnings | Strong increase |
-
-### Interpretation:
-The test strategy brings:
-> **Fewer but higher-quality users**
+| Parameter | Detail |
+|---|---|
+| **Test Type** | Two-sample A/B Test |
+| **Control Group** | Maximum Bidding (existing feature) |
+| **Test Group** | Average Bidding (new feature) |
+| **Duration** | 40 days |
+| **Sample Size** | 40 observations per group (80 total) |
+| **Primary Metric** | Earning (Revenue) |
+| **Secondary Metrics** | Impressions, Clicks, Purchases |
+| **Significance Level (α)** | 0.05 |
+| **Statistical Power (1-β)** | 0.80 |
 
 ---
 
-## 📐 Sample Size Consideration
+## 📂 Dataset
 
-- Required sample size ≈ **69 per group**
-- Available data = **40 per group**
+**Source:** [Facebook A/B Test of Bidding Feature — Kaggle](https://www.kaggle.com/datasets/furth3r/facebook-ab-test-of-bidding-feature/data)
 
-### Insight:
-> The experiment is slightly underpowered, so results must be interpreted carefully.
+The dataset contains two CSV files — one per group — each with **40 daily observations** and **4 features**:
 
----
+| Column | Description |
+|---|---|
+| `Impression` | Number of times the ad was shown to users |
+| `Click` | Number of times users clicked on the ad |
+| `Purchase` | Number of purchases made after clicking |
+| `Earning` | Revenue generated from those purchases |
 
-## 🧪 Hypothesis Testing
-
-### Hypothesis:
-
-- **H0**: Test does NOT improve earnings  
-- **H1**: Test improves earnings  
-
-### Method:
-- Levene’s Test → Variance check  
-- Two-sample t-test → Mean comparison  
-- One-tailed test → Business-driven direction  
+**Data Quality:** ✅ No missing values in either group. Both datasets are clean and ready for analysis.
 
 ---
 
-## 📊 Results
+## 📁 Project Structure
 
-- Mean Difference ≈ **+₹606**
-- t-statistic ≈ **-9.26**
-- p-value ≈ **1.72e-14**
-
-### Conclusion:
-
-> The result is **statistically significant** (p < 0.05)
-
----
-
-## 📈 Confidence Interval
-
-**95% CI (Test − Control):**  
-👉 **[₹478, ₹728]**
-
-### Interpretation:
-
-- Entire interval is positive  
-- Strong and consistent uplift  
-- Reliable business impact  
+```
+facebook-ab-test/
+│
+├── data/
+│   ├── control_group.csv       # Maximum Bidding group (40 days)
+│   └── test_group.csv          # Average Bidding group (40 days)
+│
+├── AB_testing.ipynb            # Main analysis notebook
+├── README.md                   # Project documentation
+└── requirements.txt            # Python dependencies
+```
 
 ---
 
-## 💰 Business Impact
+## 🛠 Tech Stack
 
-> The new strategy increases earnings by approximately **₹478–₹728 per user**
-
-At scale, this translates to:
-- Significant revenue growth  
-- Improved ROI on ad spend  
-
----
-
-## ⚖️ Trade-Off Analysis
-
-| Metric | Impact |
-|--------|-------|
-| CTR | Decreased ❌ |
-| Conversion Rate | Increased ✅ |
-| Revenue | Increased significantly ✅ |
-
-### Insight:
-
-> The strategy improves **quality over quantity**
+| Tool | Purpose |
+|---|---|
+| **Python 3.13** | Core programming language |
+| **Pandas** | Data loading, cleaning, transformation |
+| **NumPy** | Numerical computations, bootstrap sampling |
+| **SciPy** | Statistical tests (t-test, Levene's test) |
+| **Matplotlib** | Distribution histograms |
+| **Plotly** | Interactive funnel chart visualization |
 
 ---
 
-## 🧠 Key Insight
+## 🔬 Methodology
 
-> Not all clicks are valuable — the test group generates fewer clicks but higher revenue.
+The analysis follows a structured, end-to-end data science workflow:
 
----
+```
+1. Data Loading & Inspection
+        ↓
+2. Exploratory Data Analysis (EDA)
+        ↓
+3. Comparative Metric Analysis
+        ↓
+4. Funnel Analysis
+        ↓
+5. Derived KPI Computation
+        ↓
+6. Hypothesis Testing
+   ├── Levene's Test (variance equality check)
+   └── Two-Sample t-Test (mean comparison)
+        ↓
+7. Bootstrap Confidence Interval
+        ↓
+8. Sample Size Validation
+        ↓
+9. Business Conclusion & Recommendation
+```
 
-## 🚀 Recommendation
+### Hypothesis
 
-### ✅ Decision:
-**Proceed with rollout of test strategy**
-
-### ⚠️ With caution:
-- Monitor CTR drop  
-- Validate with larger sample  
-- Track long-term performance  
-
----
-
-## 📉 Limitations
-
-1. Sample size < required threshold  
-2. Short experiment duration  
-3. Limited behavioral metrics  
-
----
-
-## 🧠 What Would I Do Next?
-
-- Collect more data (reach ≥ 69 per group)  
-- Run experiment longer  
-- Segment users (device, region, etc.)  
-- Track retention & lifetime value  
-
----
-
-## 🎯 Final Conclusion
-
-> The test campaign delivers a statistically significant and practically meaningful increase in revenue. Despite a slightly smaller sample size, the strong effect size and confidence interval indicate that the strategy is promising and suitable for rollout with continued monitoring.
+> **H₀ (Null):** There is no significant difference in earnings between Maximum Bidding and Average Bidding.
+>
+> **H₁ (Alternative):** Average Bidding generates significantly higher earnings than Maximum Bidding.
 
 ---
 
-## 🛠️ Tools & Skills Used
+## 📈 Key Results & Insights
 
-- Python (Pandas, NumPy, SciPy)  
-- A/B Testing  
-- Hypothesis Testing  
-- Confidence Intervals  
-- Data Visualization (Plotly)  
-- Business Analytics  
+### Overall Performance Comparison
+
+| Metric | Control (Max Bid) | Test (Avg Bid) | Change |
+|---|---|---|---|
+| **Impressions** | 101,711 | 120,512 | 🟢 +18.5% |
+| **Clicks** | 5,100 | 3,967 | 🔴 −22.2% |
+| **Purchases** | 550.9 | 582.1 | 🟢 +5.65% |
+| **Earnings** | 1,908.58 | 2,514.93 | 🟢 **+31.77%** |
+
+### 💡 Key Insight
+
+> Average Bidding reaches **18% more users** and generates **31.8% more revenue**, despite attracting **22% fewer clicks**. This means fewer but more relevant, high-intent users are clicking — leading to better conversions and higher-value purchases.
 
 ---
 
-## 💡 Key Takeaway
+## 🔻 Funnel Analysis
 
-> “Data-driven decisions are not just about significance—they are about impact.”
+The funnel tracks user progression through the ad journey: **Impression → Click → Purchase → Earning**
+
+| Funnel Stage | Control | Test | Interpretation |
+|---|---|---|---|
+| **Impression → Click (CTR)** | 5.01% | 3.29% | Test attracts broader but less click-happy audience |
+| **Click → Purchase (CVR)** | 10.80% | **14.67%** | 🟢 Test users who click are more likely to buy — better targeting |
+| **Purchase → Earning** | 346.45% | **432.08%** | 🟢 Test generates higher revenue per purchase — higher-value orders |
+
+### What This Tells Us
+
+- **Lower CTR is not a red flag.** The test group trades volume for quality — fewer clicks, but far more conversions and revenue per click.
+- **Average Bidding appears to attract higher purchase-intent users**, possibly because the flexible bidding algorithm optimizes for audiences more likely to convert rather than simply maximizing reach.
+- **Revenue per purchase is 24.7% higher** in the test group, suggesting Average Bidding may surface higher-value customers or product segments.
 
 ---
+
+## 📊 Derived KPIs
+
+These efficiency metrics reveal how well each strategy monetizes user engagement:
+
+| KPI | Control (Max Bid) | Test (Avg Bid) | Lift |
+|---|---|---|---|
+| **Earning per Click** | $0.37 | **$0.63** | +70.3% |
+| **Earning per Impression** | $0.0188 | **$0.0209** | +11.2% |
+| **Purchase per Click** | 0.1080 | **0.1467** | +35.8% |
+| **Earning per Purchase** | $3.46 | **$4.32** | +24.9% |
+
+> 📌 **Earning per Click is the standout metric** — the test strategy generates **70% more revenue per click**. This is the clearest indicator that Average Bidding delivers superior monetization efficiency.
+
+---
+
+## ✅ Statistical Validation
+
+### Step 1 — Levene's Test (Variance Equality)
+
+Before running the t-test, variance homogeneity between groups was verified using **Levene's Test**.
+
+- The result determined which variant of the t-test to apply (equal variance vs. Welch's t-test).
+
+### Step 2 — Two-Sample t-Test
+
+| Stat | Value |
+|---|---|
+| **Mean Earning (Control)** | 1,908.58 |
+| **Mean Earning (Test)** | 2,514.93 |
+| **t-statistic** | −9.2561 |
+| **p-value** | 1.72 × 10⁻¹⁴ |
+| **Cohen's d** | −2.0697 |
+| **Result** | ✅ **Reject H₀** |
+
+### Interpretation
+
+> The p-value of **1.72 × 10⁻¹⁴** is astronomically smaller than α = 0.05.
+> The probability this result is due to chance is essentially **zero**.
+> Cohen's d of **−2.07** indicates a **large effect size** — this is not a marginal gain, it is a substantial, meaningful difference.
+
+---
+
+## 📏 Confidence Interval
+
+A **Bootstrap Confidence Interval** (5,000 iterations) was computed to estimate the true range of the earnings uplift:
+
+```
+95% Confidence Interval (Test − Control Earnings): [478.07, 728.28]
+```
+
+> **Interpretation:** We are **95% confident** that switching to Average Bidding increases daily earnings by **between $478 and $728 per campaign**, compared to Maximum Bidding.
+
+### Sample Size Validation
+
+Using the power analysis formula with α = 0.05 and β = 0.20:
+
+```
+Required sample size per group: 69
+Actual sample size per group:   40
+```
+
+> ⚠️ The experiment ran with fewer observations than the theoretically recommended 69. However, given the **extremely low p-value (10⁻¹⁴)** and **large effect size (Cohen's d = 2.07)**, the test results are highly robust and the conclusion holds with confidence.
+
+---
+
+## 🎯 Business Recommendation
+
+### ✅ Recommendation: **Roll out Average Bidding to all advertisers**
+
+The evidence from this 40-day experiment is conclusive:
+
+| Factor | Evidence |
+|---|---|
+| **Revenue uplift** | +31.8% increase in average daily earnings |
+| **Statistical confidence** | p-value = 1.72 × 10⁻¹⁴ (near-zero chance of randomness) |
+| **Effect size** | Cohen's d = 2.07 (large effect) |
+| **Revenue range** | $478–$728 daily earnings increase per campaign (95% CI) |
+| **Efficiency** | +70% earning per click, +35% purchase rate per click |
+
+### Strategic Implications
+
+1. **For Advertisers:** Average Bidding delivers meaningfully better ROI. Advertisers should migrate from Maximum Bidding or use Average Bidding as the default strategy for revenue-focused campaigns.
+
+2. **For Facebook / Meta Product Team:** This feature drives measurable platform revenue improvement. Consider making Average Bidding the **default bidding option**, with Maximum Bidding available as an advanced setting.
+
+3. **For Marketing Teams:** The lower CTR under Average Bidding should not be misread as underperformance. Teams should update their KPI dashboards to **prioritize Earning per Click and Purchase CVR** over raw click volume.
+
+4. **Next Steps:**
+   - Replicate the test with a larger sample (n ≥ 69 per group) to close the sample size gap
+   - Segment results by campaign type, industry vertical, and ad format to understand where Average Bidding performs best
+   - Monitor long-term effects over 90–180 days to check for saturation or novelty effects
+
+---
+
+## ▶️ How to Run
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/facebook-ab-test.git
+cd facebook-ab-test
+```
+
+### 2. Install dependencies
+
+```bash
+pip install pandas numpy scipy matplotlib plotly
+```
+
+Or use the requirements file:
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Launch the notebook
+
+```bash
+jupyter notebook AB_testing.ipynb
+```
+
+### Requirements
+
+```
+pandas
+numpy
+scipy
+matplotlib
+plotly
+jupyter
+```
+
+---
+
+## 📚 References
+
+- Dataset: [Facebook A/B Test of Bidding Feature — Kaggle](https://www.kaggle.com/datasets/furth3r/facebook-ab-test-of-bidding-feature/data)
+- Kohavi, R., Tang, D., & Xu, Y. (2020). *Trustworthy Online Controlled Experiments.* Cambridge University Press.
+- SciPy Documentation: [scipy.stats.ttest_ind](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html)
+- SciPy Documentation: [scipy.stats.levene](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.levene.html)
+- Cohen, J. (1988). *Statistical Power Analysis for the Behavioral Sciences* (2nd ed.).
+
+---
+
+<div align="center">
+
+**⭐ If you found this analysis useful, give the repo a star!**
+
+*Built with Python · Analyzed with SciPy · Visualized with Plotly*
+
+</div>
