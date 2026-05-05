@@ -179,7 +179,7 @@ The funnel tracks user progression through the ad journey: **Impression → Clic
 ---
 
 ## 📊 Derived KPIs
-![Funnel Analysis Chart](Asset/metric%20Comparision.png)
+![Metric Comparison Chart](Asset/metric%20Comparision.png)
 
 
 These efficiency metrics reveal how well each strategy monetizes user engagement:
